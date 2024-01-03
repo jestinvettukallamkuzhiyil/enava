@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>E-Navajyothi | Log In</title>
+    <link rel="icon" type="icon" href='{% static 'dist/img/navlogin.png' %}' />
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' %}">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Google Recaptcha     -->
+    <!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
+        <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdsTskkAAAAANeIaFElCoC0t3Fst4yhVbiJ_9dO"></script>
+
+</head>
+
+<body class="hold-transition login-page" style="background-image: url('{% static 'dist/img/IMG3-scaled.jpg' %}');
+                                                background-size: 100rem;
+                                                background-repeat: no-repeat;
+                                                background-position: center;
+                                                background-attachment: fixed;"; >
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card " style ="border-radius: 2em; box-shadow : 0 10px 20px rgba(0,0,0,.2)";> <div class="login-logo">
+            <div class="login-logo" style = "padding : .5em"> <img   src="{% static 'dist/img/navlogin.png' %} " alt="navLogo"  ></div>
+
+            <a href=""><b>E</b>-Navajyothi</a>
+
+        </div>
+            <div class="card-body login-card-body "style ="border-radius: 2em; box-shadow : 0 10px 20px rgba(0,0,0,.2)"; >
+                <!-- <p class="login-box-msg">Sign in to start your session</p> -->
+                {% if messages %}
+                <div class="col-12">
+                    {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    <div class="alert alert-danger text-center ">
+                        {{message }}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form action="doLogin/" method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input required type="email" name='email' class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required type="password" name='password' class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <!--<div class="g-recaptcha" data-sitekey="6LdsTskkAAAAANeIaFElCoC0t3Fst4yhVbiJ_9dO"></div>-->
+
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-success btn-block">Log In</button>
+                        </div>
+
+
+                        <!-- /.col -->
+                </div>
+                </form>
+
+
+                <p class="mb-1">
+                    <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                </p>
+
+
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <div>
+        <a href="https://rzp.io/l/M5X4feuXyr" style="background-color:#4CAF50;border:none;color:white;padding:8px 16px;text-align:center;text-decoration:none;display:inline-block;font-size:14px;margin:4px 2px;cursor:pointer;border-radius:8px;box-shadow:0px 1px 3px rgba(0,0,0,0.25)">Pay Your Fee</a>
+
+    </div>
+    <!-- /.login-box -->
+
+    <!-- jQuery -->
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+
+</body>
+
+</html>

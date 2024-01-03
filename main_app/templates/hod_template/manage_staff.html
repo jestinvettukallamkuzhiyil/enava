@@ -1,0 +1,140 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{page_title}}{% endblock page_title %}
+
+{% block content %}
+<script type="text/javascript">
+    function searchrecords()
+    {
+    var input, table, tr, td,filter,i,txtdata;
+    input=document.getElementById("searchtxt");
+    filter=input.value.toUpperCase();
+    table=document.getElementById("example2");
+    tr=table.getElementsByTagName("tr");
+    for(i=0; i<tr.length; i++)
+            {
+            td=tr[i].getElementsByTagName("td")[1];
+                if(td)
+                    {
+                        txtdata=td.innerText;
+                        if(txtdata.toUpperCase().indexOf(filter)>-1)
+                            {
+                                tr[i].style.display="";
+                            }
+                        else
+                            {
+                                tr[i].style.display="none";
+                            }
+                    }
+            }
+   
+    }
+    function cleartxt() 
+        {
+        document.getElementById("searchtxt").value="";
+        document.getElementById("searchtxt").focus();   
+        }
+ function searchrecords2()
+    {
+    var input, table, tr, td,filter,i,txtdata;
+    input=document.getElementById("searchtxt2");
+    filter=input.value.toUpperCase();
+    table=document.getElementById("example2");
+    tr=table.getElementsByTagName("tr");
+    for(i=0; i<tr.length; i++)
+            {
+            td=tr[i].getElementsByTagName("td")[3];
+                if(td)
+                    {
+                        txtdata=td.innerText;
+                        if(txtdata.toUpperCase().indexOf(filter)>-1)
+                            {
+                                tr[i].style.display="";
+                            }
+                        else
+                            {
+                                tr[i].style.display="none";
+                            }
+                    }
+            }
+   
+    }
+    function cleartxt2() 
+        {
+        document.getElementById("searchtxt2").value="";
+        document.getElementById("searchtxt2").focus();   
+        }
+    </script>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">{{page_title}}</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <input type="text" id="searchtxt" placeholder="Search Records by name..." onkeyup="searchrecords();"/>
+                        <input type="button" value="Clear" onclick="cleartxt();">
+                        <input type="text" id="searchtxt2" placeholder="Search Records by Phone no..." onkeyup="searchrecords2();"/>
+                        <input type="button" value="Clear" onclick="cleartxt2();">
+                        <table id="example2" class="display table table-striped table-hover grid_">
+                            <thead >
+                                <tr>
+                                    <th>#</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>phone</th>
+                                    <th>Department</th>
+                                    <th>Qualification</th>
+                                    <th>Avatar</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                           <tfoot>
+                                <tr>
+                                    <th >#</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>phone</th>
+                                    <th>Department</th>
+                                    <th>Qualification</th>
+                                    <th>Avatar</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                {% for staff in allStaff %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{staff.first_name|lower|capfirst}} {{staff.last_name|lower|capfirst}}</td>
+                                    <td>{{staff.email}}</td>
+                                    <td>+91{{staff.staff.phone_num}}</td>
+                                    <td>{{staff.staff.department.name}}</td>
+                                    <td>{{staff.staff.qualification|upper}}</td>
+                                    <td>
+                                        {% if staff.profile_pic == ""  %}
+                                        No Image
+                                        {% else %}
+                                        <img class="img img-fluid mb-2" height="56" width="56"
+                                            src="{{staff.profile_pic}}" alt="">
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'edit_staff' staff.staff.id %}" class="btn btn-info">Edit</a> 
+                                        <a href="{% url 'delete_staff' staff.staff.id %}" class="btn btn-danger" onclick="return confirm('Are you sure about this ?')">Delete</a>
+                                    
+                                    </td>
+                                </tr>
+                               
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

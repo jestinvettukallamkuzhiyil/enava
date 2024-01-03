@@ -1,0 +1,114 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}{{page_title}}{% endblock page_title %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">{{page_title}}</h3>
+                    </div>
+                    <style>
+                        .heading_font {
+                     text-align: center;
+                             }
+                    </style>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                   
+                        
+                     
+                        {% comment %} <p> name : {{student.admin}}</p>
+                        <p> Email : {{student.admin.email}} </p>
+                        <p>Aadhar : {{student.aadhar_num}} </p>
+                        <p>phone number : {{student.phone_num}}</p> {% endcomment %}
+
+                    <h1 class="heading_font"><b>Navajyothi College Cherupuzha</b></h1><br>
+                    <h2 class="heading_font"><b>STUDENT PROFILE</b></h2><br>
+                   
+                   <div class="card border-success mb-3 mx-auto" style="background: rgb(194,251,255);
+                   background: linear-gradient(90deg, rgba(194,251,255,1) 0%, rgba(204,245,255,1) 50%, rgba(185,226,255,1) 100%);max-width: 55rem;">
+
+                   {% comment %} <div class="card-body bg-transparent border-success mx-auto"><img src={{student.admin.profile_pic}} height="200rem" width="200rem"  style="border-radius: 10% ;"></div>
+                   <h3 class="heading_font">Name : {{student.admin}}</h3> {% endcomment %}
+                    <div class="card-body">
+                        <!-- <h5 class="card-title">Success card title</h5> -->
+                        <!-- <p class="card-text" style="font-family :'Times New Roman', Times, serif";> haii im body </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success">Footer</div> -->
+                    <table class = "table table-borderless" >
+                        
+                        <tbody> 
+                          <tr>
+                          <th scope="row">Name:</th>
+                          <td>{{student.admin}}</td>
+                          <th scope="row">D.O.B:</th>
+                          <td>{{student.date_of_birth}}</td>
+                          <td rowspan='3'><img src={{student.admin.profile_pic}} height="150rem" width="120rem"  style="border-radius: 10% ;"></td>
+                          
+                        </tr>
+
+                         
+                              <tr>
+                                <th scope="row">Gender</th>
+                          <td>{{student.admin.gender}}</td>
+                                <th scope="row">Religion:</th>
+                                <td>{{student.religion|upper}}</td>
+                              </tr>  <tr>
+                                <th scope="row">E-mail:</th>
+                                <td>{{student.admin.email}}</td>
+                            
+                          </tr>
+                            </tbody>
+                          </table>
+                            <table class = "table table-borderless" >
+                            <tbody>
+                         
+                        
+                          <tr> 
+                             <th scope="row">Aadhar No:</th>
+                                <td>{{student.aadhar_num}}</td>
+                                <th scope="row">Phone No:</th>
+                            <td>+91 {{student.phone_num}}</td>
+                            
+                            </tr>
+
+                          
+
+                              <tr>
+                                <th scope="row">Course:</th>
+                                <td>{{student.course}}</td>
+                               <th scope="row">Department:</th>
+                                <td>{{student.department}}</td>
+                              </tr>
+
+                              <tr>
+                                <th scope="row">Admission No:</th>
+                                <td>{{student.admission_num|upper}}</td>
+                                <th scope="row">Register No:</th>
+                                <td><b>{{student.register_num|upper}}</b></td>
+                              </tr>
+                          <tr>
+                            <th scope="row">Address:</th>
+                           
+                            <td colspan="2">{{student.admin.address|upper}}</td>
+                            
+                          </tr> 
+                            
+
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
